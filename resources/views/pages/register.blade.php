@@ -77,6 +77,8 @@ data-template="vertical-menu-template-free"
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
+        @include('layout.alert')
+
         <!-- Register Card -->
         <div class="card">
         <div class="card-body">
@@ -221,8 +223,8 @@ data-template="vertical-menu-template-free"
 <!-- Page JS -->
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\RegisterRequest', '#formRegister'); !!}
 
 </body>

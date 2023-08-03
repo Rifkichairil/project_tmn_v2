@@ -62,6 +62,11 @@ data-template="vertical-menu-template-free"
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <style>
+        span.help-block.error-help-block {
+            color: red
+        }
+    </style>
 </head>
 
 <body>
@@ -70,6 +75,8 @@ data-template="vertical-menu-template-free"
     <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
+            @include('layout.alert')
+
         <!-- Register -->
         <div class="card">
             <div class="card-body">
@@ -137,7 +144,7 @@ data-template="vertical-menu-template-free"
             <!-- /Logo -->
             <h4 class="mb-2">Selamat Datang 👋</h4>
 
-            <form id="formLogin" class="mb-3" action="{{ route('auth') }}" method="POST">
+            <form id="formAuth" class="mb-3" action="{{ route('auth') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -199,5 +206,9 @@ data-template="vertical-menu-template-free"
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\AuthRequest', '#formAuth'); !!}
+
 </body>
 </html>

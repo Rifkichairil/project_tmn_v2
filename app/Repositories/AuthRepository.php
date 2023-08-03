@@ -2,18 +2,23 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\AuthRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Mail\TestingMail;
 use App\Models\Accounts;
+use App\Models\Identity;
 use App\Models\Personal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
 
 
 class AuthRepository
 {
-    public function saveLogin(Request $request){
+    public function saveLogin(AuthRequest $request){
         $credentials = [
             'email'      => $request->email,
             'password'   => $request->password,
@@ -34,7 +39,7 @@ class AuthRepository
                 'position_id'   => 1,
                 'uuid'          => Uuid::uuid4(),
                 'email'         => $request->email,
-                'password'      => $password,
+                'password'      => Hash::make($password),
                 'role'          => 99,
                 'status'        => 1,
             ]);
@@ -47,6 +52,7 @@ class AuthRepository
             Identity::create([
                 'account_id' => $account->id,
             ]);
+            Mail::to($account->email)->send(new TestingMail($password));
 
         } catch (\Throwable $th) {
             DB::rollBack();

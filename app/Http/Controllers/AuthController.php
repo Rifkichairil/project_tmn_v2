@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Repositories\AuthRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,15 +27,18 @@ class AuthController extends Controller
 
     public function store(RegisterRequest $request) {
         list($code, $response) = $this->authRep->saveRegister($request);
-        return [200, $response];
+        if ($code == 200 ) {
+            return redirect()->back()->with('success_message', 'Berhasil mendaftar sebagai admin, silahkan cek password diemail anda.');
+        }
+        return redirect()->back()->with('error_message', 'Periksa kembali email dan password admin anda.');
     }
 
-    public function auth(Request $request) {
+    public function auth(AuthRequest $request) {
         list($code, $response) = $this->authRep->saveLogin($request);
         if ($code == 200 ) {
             return redirect()->intended('dashboard');
         }
-        return redirect()->back();
+        return redirect()->back()->with('error_message', 'Periksa kembali email dan password admin anda.');
     }
 
     public function logout(Request $request) {
