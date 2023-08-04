@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,16 +39,16 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/dashboard-chart', 'dashboardChart')->name('dashboardChart');
     });
 
-    // Route::controller(KaryawanController::class)->prefix('karyawan')->name('karyawan.')->group(function(){
-    //     Route::get('/datatable', 'datatable')->name('datatable');
-    //     Route::get('/datatable-karyawan/{id}', 'datatableAbsen')->name('datatableAbsen');
+    Route::controller(KaryawanController::class)->prefix('karyawan')->name('karyawan.')->group(function(){
+        Route::get('/datatable', 'datatable')->name('datatable');
+        Route::get('/datatable-karyawan/{id}', 'datatableAbsen')->name('datatableAbsen');
 
-    //     Route::get('/', 'index')->name('index');
-    //     Route::post('/store', 'store')->name('store');
-    //     Route::get('/detail/{id}', 'detail')->name('detail');
-    //     Route::get('/edit/{id}', 'edit')->name('edit');
-    //     Route::post('/edit/{id}', 'update')->name('update');
-    // });
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/detail/{id}', 'detail')->name('detail');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/edit/{id}', 'update')->name('update');
+    });
 
     // Route::controller(AbsensiController::class)->prefix('absensi')->name('absensi.')->group(function(){
     //     Route::get('/datatable', 'datatable')->name('datatable');

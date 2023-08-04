@@ -85,13 +85,13 @@
         <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Input</span>
         </li>
-{{--
+
         <li class="menu-item {{ Request::route()->getName() == 'karyawan.index' ||  Request::route()->getName() == 'karyawan.detail' ? 'active' : '' }}">
             <a href="{{ route('karyawan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Karyawan</div>
             </a>
-        </li> --}}
+        </li>
         {{-- <li class="menu-item {{ Request::route()->getName() == 'absensi.index' ? 'active' : '' }}">
             <a href="{{ route('absensi.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>

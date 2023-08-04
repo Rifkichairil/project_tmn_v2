@@ -15,3 +15,14 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+mix.js([
+    "resources/js/helpers.js",
+    // "resources/js/pages/dashboard.js",
+    "resources/js/pages/datatable-karyawan.js",
+    "resources/js/pages/datatable-karyawan-detail.js",
+    "resources/js/pages/datatable-absensi.js",
+], 'public/js/template.js');
+
+
+mix.browserSync('127.0.0.1:8000');
