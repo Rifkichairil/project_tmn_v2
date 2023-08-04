@@ -18,7 +18,7 @@
         "maatwebsite/excel": "^3.1",
         "proengsoft/laravel-jsvalidation": "^4.7",
         "ramsey/uuid": "^4.2",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

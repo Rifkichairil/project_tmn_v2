@@ -82,7 +82,7 @@ data-template="vertical-menu-template-free"
             <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                {{-- <a href="index.html" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
                     <svg
                     width="25"
@@ -139,7 +139,8 @@ data-template="vertical-menu-template-free"
                     </svg>
                 </span>
                 <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
-                </a>
+                </a> --}}
+                <img src="{{ asset('assets/img/tmn-img.png') }}" width="100%" alt="">
             </div>
             <!-- /Logo -->
             <h4 class="mb-2">Selamat Datang 👋</h4>

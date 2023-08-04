@@ -53,7 +53,7 @@ class KaryawanController extends Controller
     public function datatableAbsen(Request $request, $id) {
 
         if ($request->ajax()) {
-            $data = Absens::with('account');
+            $data = Absens::with('account')->where('account_id',$id);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->toJson();
