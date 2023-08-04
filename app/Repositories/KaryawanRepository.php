@@ -45,7 +45,7 @@ class KaryawanRepository
 
             Personal::create([
                 'account_id'        => $account->id,
-                'fullname'          => $request->fullname,
+                'fullname'          => strtoupper($request->fullname),
                 'place_of_birth'    => $request->place_of_birth,
                 'date_of_birth'     => $request->date_of_birth,
                 'gender'            => $request->gender,

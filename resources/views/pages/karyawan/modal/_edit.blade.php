@@ -100,6 +100,20 @@
                                 @endforeach
                             </datalist>
                         </div>
+                        <div class="col mb-0">
+                            <label for="status" class="form-label">Status</label>
+                            <input
+                                class="form-control"
+                                list="datalistStatus"
+                                id="Editstatus"
+                                name="status"
+                                placeholder="Type to search..."
+                            />
+                            <datalist id="datalistStatus">
+                                <option value="AKTIF"></option>
+                                <option value="TIDAK AKTIF"></option>
+                            </datalist>
+                        </div>
                     </div>
                     <div class="row g-2 mb-3">
                         <div class="col mb-0">

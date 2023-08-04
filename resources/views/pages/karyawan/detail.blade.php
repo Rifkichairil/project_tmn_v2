@@ -11,19 +11,19 @@
 
     <div class="card mb-4">
         <div class="card-body">
-          <!-- Account -->
-              <div class="row">
+        <!-- Account -->
+            <div class="row">
                 <div class="mb-3 col-md-6">
-                  <label for="firstName" class="form-label">Nama Lengkap</label>
-                  <h6 class="mb-0 text-muted">{{ $data->personal->fullname }}</h6>
+                    <label for="firstName" class="form-label">Nama Lengkap</label>
+                    <h6 class="mb-0 text-muted">{{ $data->personal->fullname }}</h6>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="lastName" class="form-label">Email</label>
-                  <h6 class="mb-0 text-muted">{{ $data->email }}</h6>
+                    <label for="lastName" class="form-label">Email</label>
+                    <h6 class="mb-0 text-muted">{{ $data->email }}</h6>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="email" class="form-label">Posisi</label>
-                  <h6 class="mb-0 text-muted">{{ $data->position->name }}</h6>
+                    <label for="email" class="form-label">Posisi</label>
+                    <h6 class="mb-0 text-muted">{{ $data->position->name }}</h6>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="organization" class="form-label">Nomor Telpon</label>
@@ -65,8 +65,6 @@
                 </div>
               </div>
         </div>
-
-
     </div>
     <div class="card">
         <div class="card-body">
@@ -92,12 +90,8 @@
 @endsection
 @section('script')
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
-
-
-@vite('resources/js/pages/datatable-karyawan-detail.js')
-
-<script type="module">
-    DatatableKaryawanDetail('{!! route('karyawan.datatableAbsen', $data->id) !!}')
+<script>
+    DatatableKaryawanDetail('{!! route('karyawan.datatableAbsen', $data->id) !!}');
 </script>
 
 @endsection

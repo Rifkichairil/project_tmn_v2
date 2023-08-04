@@ -26,7 +26,7 @@ class KaryawanController extends Controller
     public function datatable(Request $request)  {
 
         if ($request->ajax()) {
-            $data = Accounts::with('personal', 'identity');
+            $data = Accounts::with('personal', 'identity')->orderBy('status', 'desc');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('personal.fullname', function ($data) {
@@ -37,7 +37,7 @@ class KaryawanController extends Controller
                     return $data->phone ?? '-';
                 })
                 ->editColumn('status', function ($data) {
-                    return $data->status == 1 ? 'Active' : 'Non Active';
+                    return $data->status == 1 ? 'AKTIF' : 'TIDAK AKTIF';
                 })
                 ->editColumn('role', function ($data) {
                     return $data->role == 99 ? 'Admin' :  'Karyawan' ;
@@ -58,12 +58,11 @@ class KaryawanController extends Controller
                 ->addIndexColumn()
                 ->toJson();
         }
-
     }
 
     public function index() : View {
         $religions = collect(['ISLAM','KRISTEN','KATHOLIK','HINDU','BUDHA','KONGHUCU','OTHER']);
-        $positions = Position::get();
+        $positions = Position::get()->except(1);
         return view('pages.karyawan.index', compact('religions', 'positions'));
     }
 

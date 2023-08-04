@@ -1,7 +1,3 @@
-window.testing = function(){
-    console.log('asddd');
-}
-
 window.DatatableKaryawan = function(url){
     var table = $('#karyawan-datatable').DataTable({
         processing: true,
@@ -32,7 +28,6 @@ window.DatatableKaryawan = function(url){
 }
 
 window.categoryEdit = function(url){
-    console.log('testing edit');
     let forms = document.getElementById('updateKaryawan');
     $.ajax({
         url,
@@ -50,6 +45,7 @@ window.categoryEdit = function(url){
             $('#Editplace_of_birth').val(data.personal.place_of_birth)
             $('#Editdate_of_birth').val(data.personal.date_of_birth)
             $('#Editgender').val(data.personal.gender)
+            $('#Editstatus').val(data.personal.status == 1 ? 'AKTIF' : 'TIDAK AKTIF')
             $('#Editzipcode').val(data.personal.zipcode)
             $('#Editaddress').val(data.personal.address)
             $('#karyawanModalEdit').modal('show');
@@ -60,5 +56,3 @@ window.categoryEdit = function(url){
         }
     })
 }
-
-// window.DatatableKaryawan = DatatableKaryawan;

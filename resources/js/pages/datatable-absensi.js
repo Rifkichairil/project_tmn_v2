@@ -1,4 +1,4 @@
-function DatatableAbsensi (url){
+window.DatatableAbsensi = function(url){
     var table = $('#absensi-datatable').DataTable({
         processing: true,
         serverSide: true,
@@ -19,5 +19,3 @@ function DatatableAbsensi (url){
         ]
     })
 }
-
-window.DatatableAbsensi = DatatableAbsensi;

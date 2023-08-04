@@ -92,24 +92,12 @@
                 <div data-i18n="Analytics">Karyawan</div>
             </a>
         </li>
-        {{-- <li class="menu-item {{ Request::route()->getName() == 'absensi.index' ? 'active' : '' }}">
+        <li class="menu-item {{ Request::route()->getName() == 'absensi.index' ? 'active' : '' }}">
             <a href="{{ route('absensi.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Absensi</div>
             </a>
-        </li> --}}
-         {{--<li class="menu-item {{ Request::route()->getName() == 'recipient.index' ? 'active' : '' }}">
-            <a href="{{ route('recipient.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Recipients</div>
-            </a>
         </li>
-        <li class="menu-item ">
-            <a href="{{ route('dashboard.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Cards</div>
-            </a>
-        </li> --}}
         <!-- Tables -->
     </ul>
     </aside>

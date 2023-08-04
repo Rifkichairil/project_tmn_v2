@@ -44,9 +44,9 @@
 @section('script')
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 
-@vite('resources/js/pages/datatable-absensi.js')
+{{-- @vite('resources/js/pages/datatable-absensi.js') --}}
 
-<script type="module">
+<script>
     DatatableAbsensi('{!! route('absensi.datatable') !!}')
 </script>
 

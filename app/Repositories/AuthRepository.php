@@ -22,7 +22,8 @@ class AuthRepository
         $credentials = [
             'email'      => $request->email,
             'password'   => $request->password,
-            'role'       => 99
+            'role'       => 99,
+            'status'     => 1
         ];
 
         if (auth()->attempt($credentials)) {
@@ -46,7 +47,7 @@ class AuthRepository
 
             Personal::create([
                 'account_id' => $account->id,
-                'fullname'   => $request->fullname,
+                'fullname'   => strtoupper($request->fullname),
             ]);
 
             Identity::create([

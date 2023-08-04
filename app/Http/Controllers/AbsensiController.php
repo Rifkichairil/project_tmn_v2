@@ -14,12 +14,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AbsensiController extends Controller
 {
-    //
-    public function __construct(protected AbsensiRepository $absensiRepo){}
+    protected $absensiRepo;
+    public function __construct(AbsensiRepository $absensiRepo)
+    {
+        $this->absensiRepo = $absensiRepo;
+    }
 
     public function datatable(Request $request) {
         if ($request->ajax()) {
-            $data = Absens::with('account');
+            $data = Absens::with('account.personal');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('account.personal.fullname', function ($data) {

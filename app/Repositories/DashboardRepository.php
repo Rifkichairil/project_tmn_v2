@@ -18,17 +18,17 @@ class DashboardRepository
         $year   = now()->year;
         $month  = now()->month;
 
-        $in = Absens::select(DB::raw("DATE_FORMAT(created_at, '%d') AS date, COUNT(*) AS total"))
+        $in = Absens::select(DB::raw("DATE_FORMAT(absen_of_date, '%d') AS date, COUNT(*) AS total"))
             ->where('type', 'IN')
-            ->whereMonth('created_at', $month)
-            ->whereYear('created_at', $year)
+            ->whereMonth('absen_of_date', $month)
+            ->whereYear('absen_of_date', $year)
             ->groupBy('date')
             ->orderBy('date')
             ->get();
-        $out = Absens::select(DB::raw("DATE_FORMAT(created_at, '%d') AS date, COUNT(*) AS total"))
+        $out = Absens::select(DB::raw("DATE_FORMAT(absen_of_date, '%d') AS date, COUNT(*) AS total"))
             ->where('type', 'OUT')
-            ->whereMonth('created_at', $month)
-            ->whereYear('created_at', $year)
+            ->whereMonth('absen_of_date', $month)
+            ->whereYear('absen_of_date', $year)
             ->groupBy('date')
             ->orderBy('date')
             ->get();

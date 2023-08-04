@@ -2,97 +2,64 @@
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
 (() => {
-/*!*********************************!*\
-  !*** ./resources/js/helpers.js ***!
-  \*********************************/
-var npwpInput = document.getElementById('npwp_number');
+/*!*****************************************!*\
+  !*** ./resources/js/pages/dashboard.js ***!
+  \*****************************************/
+// import Chart from "chart.js/auto";
+// import axios from "axios";
 
-// Menambahkan event listener untuk setiap perubahan pada input field
-npwpInput.addEventListener('input', function () {
-  var npwp = this.value.replace(/[^0-9]/g, ''); // Hanya mempertahankan angka
-  npwp = npwp.slice(0, 15); // Memotong panjang NPWP menjadi maksimum 15 karakter
+window.DashboardPage = function (url) {
+  "use strict";
 
-  // Menambahkan format ke dalam NPWP
-  if (npwp.length > 2) {
-    npwp = npwp.slice(0, 2) + '.' + npwp.slice(2);
-  }
-  if (npwp.length > 6) {
-    npwp = npwp.slice(0, 6) + '.' + npwp.slice(6);
-  }
-  if (npwp.length > 10) {
-    npwp = npwp.slice(0, 10) + '.' + npwp.slice(10);
-  }
-  if (npwp.length > 12) {
-    npwp = npwp.slice(0, 12) + '-' + npwp.slice(12);
-  }
-  if (npwp.length > 16) {
-    npwp = npwp.slice(0, 16) + '.' + npwp.slice(16);
-  }
-  this.value = npwp;
-});
-var phoneInput = document.getElementById('phone');
-phoneInput.addEventListener('input', function (event) {
-  var phoneNumber = event.target.value.trim();
-  if (phoneNumber.startsWith('0')) {
-    phoneNumber = phoneNumber.replace(/^0/, '+62');
-  } else if (phoneNumber.startsWith('62')) {
-    phoneNumber = phoneNumber.replace(/^62/, '+62');
-  }
-  event.target.value = phoneNumber;
-});
-var zipCodeInput = document.getElementById('zipcode');
+  var registeredData, myChart;
 
-// Menambahkan event listener untuk setiap perubahan pada input field
-zipCodeInput.addEventListener('input', function () {
-  var zip = this.value.replace(/[^0-9]/g, ''); // Hanya mempertahankan angka
-  zip = zip.slice(0, 5); // Memotong panjang input menjadi maksimum 16 karakter
-
-  this.value = zip;
-});
-var npwpInputEdit = document.getElementById('Editnpwp_number');
-
-// Menambahkan event listener untuk setiap perubahan pada input field
-npwpInputEdit.addEventListener('input', function () {
-  var npwp = this.value.replace(/[^0-9]/g, ''); // Hanya mempertahankan angka
-  npwp = npwp.slice(0, 15); // Memotong panjang NPWP menjadi maksimum 15 karakter
-
-  // Menambahkan format ke dalam NPWP
-  if (npwp.length > 2) {
-    npwp = npwp.slice(0, 2) + '.' + npwp.slice(2);
+  // Chart widget page
+  if ($("#myChart").length) {
+    var ctx = $("#myChart")[0].getContext("2d");
+    var date = new Date();
+    $.ajax({
+      url: url,
+      type: 'GET',
+      // data : { id : id },
+      success: function success(data) {
+        console.log(data.data[0][0]["value"]);
+        myChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: 'Clock In',
+              data: data.data[0][0]["value"],
+              borderWidth: 1,
+              backgroundColor: '#9BD0F5'
+            }, {
+              label: 'Clock Out',
+              data: data.data[0][1]["value"],
+              borderWidth: 1,
+              backgroundColor: '#000'
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      },
+      error: function error(data) {
+        alert('gagal melakukan proses!');
+      }
+    });
   }
-  if (npwp.length > 6) {
-    npwp = npwp.slice(0, 6) + '.' + npwp.slice(6);
-  }
-  if (npwp.length > 10) {
-    npwp = npwp.slice(0, 10) + '.' + npwp.slice(10);
-  }
-  if (npwp.length > 12) {
-    npwp = npwp.slice(0, 12) + '-' + npwp.slice(12);
-  }
-  if (npwp.length > 16) {
-    npwp = npwp.slice(0, 16) + '.' + npwp.slice(16);
-  }
-  this.value = npwp;
-});
-var phoneInputEdit = document.getElementById('Editphone');
-phoneInputEdit.addEventListener('input', function (event) {
-  var phoneNumber = event.target.value.trim();
-  if (phoneNumber.startsWith('0')) {
-    phoneNumber = phoneNumber.replace(/^0/, '+62');
-  } else if (phoneNumber.startsWith('62')) {
-    phoneNumber = phoneNumber.replace(/^62/, '+62');
-  }
-  event.target.value = phoneNumber;
-});
-var zipCodeInputEdit = document.getElementById('Editzipcode');
-
-// Menambahkan event listener untuk setiap perubahan pada input field
-zipCodeInputEdit.addEventListener('input', function () {
-  var zip = this.value.replace(/[^0-9]/g, ''); // Hanya mempertahankan angka
-  zip = zip.slice(0, 5); // Memotong panjang input menjadi maksimum 16 karakter
-
-  this.value = zip;
-});
+};
 })();
 
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
@@ -205,6 +172,7 @@ window.categoryEdit = function (url) {
       $('#Editplace_of_birth').val(data.personal.place_of_birth);
       $('#Editdate_of_birth').val(data.personal.date_of_birth);
       $('#Editgender').val(data.personal.gender);
+      $('#Editstatus').val(data.personal.status == 1 ? 'AKTIF' : 'TIDAK AKTIF');
       $('#Editzipcode').val(data.personal.zipcode);
       $('#Editaddress').val(data.personal.address);
       $('#karyawanModalEdit').modal('show');

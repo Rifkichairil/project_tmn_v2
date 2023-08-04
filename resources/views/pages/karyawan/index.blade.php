@@ -32,7 +32,7 @@
                                 <th>Fullname</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Status</th>
+                                <th>Status Karyawan</th>
                                 <th>Role</th>
                                 <th>Action</th>
                             </tr>
@@ -52,20 +52,13 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('js/helpers.js') }}"></script>
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 
+
 <script>
-    testing();
     DatatableKaryawan('{!! route('karyawan.datatable') !!}')
 </script>
-
-{{-- @vite('resources/js/pages/datatable-karyawan.js')
-@vite('resources/js/helpers.js')
-
-
-<script type="module"> --}}
-    {{-- DatatableKaryawan('{!! route('karyawan.datatable') !!}') --}}
-{{-- </script> --}}
 
 {!! JsValidator::formRequest('App\Http\Requests\KaryawanRequest', '#saveKaryawan'); !!}
 {!! JsValidator::formRequest('App\Http\Requests\KaryawanUpdateRequest', '#updateKaryawan'); !!}

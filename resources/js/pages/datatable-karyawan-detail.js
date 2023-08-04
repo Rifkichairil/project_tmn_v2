@@ -1,4 +1,8 @@
-function DatatableKaryawanDetail (url){
+window.test = function(){
+    console.log('testing');
+}
+
+window.DatatableKaryawanDetail = function(url){
     var table = $('#detail-karyawan-datatable').DataTable({
         processing: true,
         serverSide: true,
@@ -18,5 +22,3 @@ function DatatableKaryawanDetail (url){
         ]
     })
 }
-
-window.DatatableKaryawanDetail = DatatableKaryawanDetail;

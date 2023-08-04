@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\passwordConfirmation;
+use App\Rules\statusConfirmation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +26,7 @@ class ClockRequest extends FormRequest
     {
         return [
             //
-            'email'     => ['required', 'email', 'exists:account,email'],
+            'email'     => ['required', 'email', 'exists:account,email', new statusConfirmation($this->email)],
             'password'  => ['required', new passwordConfirmation($this->email, $this->password)],
             'type'      => ['required', Rule::in(['IN', 'OUT'])]
         ];
