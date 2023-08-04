@@ -28,16 +28,6 @@ class AbsensiController extends Controller
                 ->editColumn('account.personal.fullname', function ($data) {
                     return $data->account->personal->fullname;
                 })
-                // ->editColumn('phone', function ($data) {
-                //     return $data->phone ?? '-';
-                // })
-                // ->editColumn('status', function ($data) {
-                //     return $data->status == 1 ? 'Active' : 'Non Active';
-                // })
-                // ->addColumn('action', function ($data) {
-                //     return view('pages.karyawan.modal.b_edit', compact('data'));
-                // })
-                // ->rawColumns(['action'])
                 ->toJson();
         }
     }

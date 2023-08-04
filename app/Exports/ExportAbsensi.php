@@ -3,7 +3,9 @@
 namespace App\Exports;
 
 use App\Models\Absens;
-
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 class ExportAbsensi implements FromCollection, WithMapping, WithHeadings
 {
     /**

@@ -28,9 +28,9 @@ class AuthController extends Controller
     public function store(RegisterRequest $request) {
         list($code, $response) = $this->authRep->saveRegister($request);
         if ($code == 200 ) {
-            return redirect()->back()->with('success_message', 'Berhasil mendaftar sebagai admin, silahkan cek password diemail anda.');
+            return redirect()->back()->with('success-message', $response);
         }
-        return redirect()->back()->with('error_message', 'Periksa kembali email dan password admin anda.');
+        return redirect()->back()->with('error-message', 'Periksa kembali fullname dan email anda.');
     }
 
     public function auth(AuthRequest $request) {
@@ -38,7 +38,7 @@ class AuthController extends Controller
         if ($code == 200 ) {
             return redirect()->intended('dashboard');
         }
-        return redirect()->back()->with('error_message', 'Periksa kembali email dan password admin anda.');
+        return redirect()->back()->with('error-message', 'Periksa kembali email dan password admin anda.');
     }
 
     public function logout(Request $request) {

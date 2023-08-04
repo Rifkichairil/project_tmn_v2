@@ -26,7 +26,7 @@ class KaryawanController extends Controller
     public function datatable(Request $request)  {
 
         if ($request->ajax()) {
-            $data = Accounts::with('personal', 'identity')->orderBy('status', 'desc');
+            $data = Accounts::with('personal', 'identity')->orderBy('status', 'desc')->orderBy('role', 'asc');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('personal.fullname', function ($data) {

@@ -27,7 +27,7 @@ data-template="vertical-menu-template-free"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Login | Target Media Nusantara</title>
 
     <meta name="description" content="" />
 
@@ -177,6 +177,12 @@ data-template="vertical-menu-template-free"
                     <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
                 </div>
             </form>
+            <p class="text-center">
+                <span>Daftarkan akun untuk Admin ?</span>
+                <a href="{{ route('register') }}">
+                    <span>Disini</span>
+                </a>
+                </p>
             </div>
         </div>
         <!-- /Register -->

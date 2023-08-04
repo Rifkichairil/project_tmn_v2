@@ -60,6 +60,6 @@ class AuthRepository
             throw $th;
         }
         DB::commit();
-        return [200, 'success'];
+        return [200, 'Berhasil mendaftar sebagai admin, silahkan cek password diemail anda.'];
     }
 }
