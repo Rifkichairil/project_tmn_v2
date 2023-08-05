@@ -86,9 +86,7 @@ window.DatatableKaryawanDetail = function (url) {
       name: 'absen_of_date'
     }, {
       data: 'type',
-      name: 'type',
-      orderable: false,
-      searchable: false
+      name: 'type'
     }],
     'columnDefs': [{
       "targets": 0,

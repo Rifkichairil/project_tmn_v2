@@ -11,7 +11,7 @@ window.DatatableKaryawanDetail = function(url){
         columns: [
             { data:'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
             { data:'absen_of_date', name:'absen_of_date' },
-            { data:'type', name:'type',orderable: false, searchable: false },
+            { data:'type', name:'type' },
         ],
         'columnDefs': [
             {
