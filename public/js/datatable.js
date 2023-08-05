@@ -172,7 +172,7 @@ window.categoryEdit = function (url) {
       $('#Editplace_of_birth').val(data.personal.place_of_birth);
       $('#Editdate_of_birth').val(data.personal.date_of_birth);
       $('#Editgender').val(data.personal.gender);
-      $('#Editstatus').val(data.personal.status == 1 ? 'AKTIF' : 'TIDAK AKTIF');
+      $('#Editstatus').val(data.status == 1 ? 'AKTIF' : 'TIDAK AKTIF');
       $('#Editzipcode').val(data.personal.zipcode);
       $('#Editaddress').val(data.personal.address);
       $('#karyawanModalEdit').modal('show');

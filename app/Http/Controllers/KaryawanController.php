@@ -84,7 +84,7 @@ class KaryawanController extends Controller
         return $data;
     }
 
-    public function update(KaryawanUpdateRequest $request, $id) : RedirectResponse {
+    public function update(KaryawanUpdateRequest $request, $id)  {
         list($code, $response) = $this->karyawanRep->updateKaryawan($request, $id);
         if ($code == 200 ) {
             return redirect()->back()->with('success-message', $response);

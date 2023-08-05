@@ -70,9 +70,15 @@ class KaryawanRepository
     }
 
     public function updateKaryawan(KaryawanUpdateRequest $request, $id) : array {
+        list($code, $data) = $this->KaryawanById($id);
+        $is_mail = false;
+
+        if ($data->email != $request->email) {
+            $is_mail = true;
+        }
+
         DB::beginTransaction();
         try {
-            list($code, $data) = $this->KaryawanById($id);
             $password = Str::random(10);
 
             $position = Position::where('name', $request->position_id)->first();
@@ -81,6 +87,7 @@ class KaryawanRepository
                 'email'             => $request->email,
                 'phone'             => $request->phone,
                 'role'              => $request->position_id == 'Admin' ? 99 : 1,
+                'password'          => ($is_mail == true) ? Hash::make($password) : $data->password
             ]);
 
             $data->personal->update([
@@ -97,13 +104,15 @@ class KaryawanRepository
                 'ktp_number'  => $request->ktp_number,
                 'npwp_number' => $request->npwp_number,
             ]);
-            Mail::to($data->email)->send(new TestingMail($password));
 
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
         DB::commit();
+        if ($is_mail) {
+            Mail::to($request->email)->send(new TestingMail($password));
+        }
         return [200, 'Berhasil mengubah data karyawan'];
     }
 

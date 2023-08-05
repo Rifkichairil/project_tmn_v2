@@ -31,6 +31,10 @@ class statusConfirmation implements Rule
     {
         $account = Accounts::where('email', $this->email)->first();
 
+        if (!$account) {
+            return false;
+        }
+
         if ($account->status == 0 || $account->position_id == 1) {
             return false;
         }
