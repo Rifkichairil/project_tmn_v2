@@ -34,9 +34,9 @@ class KaryawanRequest extends FormRequest
             //
             'position_id'       => ['required'],
             'email'             => ['required', 'email', new HTMLTag , 'unique:account,email'],
-            'phone'             => ['required', 'unique:account,phone'],
+            'phone'             => ['required', 'unique:account,phone', 'max20'],
             'fullname'          => ['required', 'max:100', new HTMLTag],
-            'place_of_birth'    => ['required', 'string', new HTMLTag],
+            'place_of_birth'    => ['required', 'string', new HTMLTag, 'max:50'],
             'date_of_birth'     => ['required', 'date'],
             'gender'            => ['required', Rule::in(['LAKI', 'PEREMPUAN', 'OTHER'])],
             'religion'          => ['required', Rule::in($this->religion())],
