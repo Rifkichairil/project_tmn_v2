@@ -91,4 +91,12 @@ class KaryawanController extends Controller
         }
         return redirect()->back()->with('error-message', $response);
     }
+
+    public function delete($id)  {
+        list($code, $response) = $this->karyawanRep->destroyKaryawan($id);
+        if ($code == 200 ) {
+            return redirect()->back()->with('success-message', $response);
+        }
+        return redirect()->back()->with('error-message', $response);
+    }
 }

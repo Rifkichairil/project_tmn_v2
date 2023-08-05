@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/detail/{id}', 'detail')->name('detail');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/edit/{id}', 'update')->name('update');
+        Route::post('/delete/{id}', 'delete')->name('delete');
+
     });
 
     Route::controller(AbsensiController::class)->prefix('absensi')->name('absensi.')->group(function(){

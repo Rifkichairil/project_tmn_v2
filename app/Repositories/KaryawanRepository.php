@@ -6,6 +6,7 @@ use App\Http\Requests\KaryawanRequest;
 use App\Http\Requests\KaryawanUpdateRequest;
 use App\Mail\LoginMailer;
 use App\Mail\TestingMail;
+use App\Models\Absens;
 use App\Models\Accounts;
 use App\Models\Identity;
 use App\Models\Personal;
@@ -20,7 +21,7 @@ use Ramsey\Uuid\Uuid;
 class KaryawanRepository
 {
     public function KaryawanById($id) : array{
-        $data = Accounts::with('personal', 'identity', 'position')->whereId($id)->first();
+        $data = Accounts::with('personal', 'identity', 'position', 'absen')->whereId($id)->first();
         if (!$data) {
             return [400, 'Data tidak ditemukan'];
 
@@ -116,4 +117,22 @@ class KaryawanRepository
         return [200, 'Berhasil mengubah data karyawan'];
     }
 
+    function destroyKaryawan($id) : array {
+        list($code, $data) = $this->KaryawanById($id);
+        DB::beginTransaction();
+        try {
+            $data->update([
+                'status' => 0
+            ]);
+            Absens::where('account_id', $data->id)->delete();
+            $data->identity->delete();
+            $data->personal->delete();
+            $data->delete();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return [200, 'Berhasil Menghapus Data Karyawan.'];
+    }
 }
