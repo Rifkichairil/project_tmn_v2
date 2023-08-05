@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\passwordConfirmation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthRequest extends FormRequest
@@ -24,7 +25,7 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'     => ['required', 'email'],
+            'email'     => ['required', 'email', 'exists:account,email'],
             'password'  => ['required']
         ];
     }

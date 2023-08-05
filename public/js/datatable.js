@@ -135,8 +135,8 @@ window.DatatableKaryawan = function (url) {
       orderable: false,
       searchable: false
     }, {
-      data: 'role',
-      name: 'role',
+      data: 'position',
+      name: 'position',
       orderable: false,
       searchable: false
     }, {

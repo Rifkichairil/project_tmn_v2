@@ -26,7 +26,7 @@ class KaryawanController extends Controller
     public function datatable(Request $request)  {
 
         if ($request->ajax()) {
-            $data = Accounts::with('personal', 'identity')->orderBy('status', 'desc')->orderBy('role', 'asc');
+            $data = Accounts::with('personal', 'identity', 'position')->orderBy('status', 'desc')->orderBy('role', 'asc');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('personal.fullname', function ($data) {
@@ -39,8 +39,8 @@ class KaryawanController extends Controller
                 ->editColumn('status', function ($data) {
                     return $data->status == 1 ? 'AKTIF' : 'TIDAK AKTIF';
                 })
-                ->editColumn('role', function ($data) {
-                    return $data->role == 99 ? 'Admin' :  'Karyawan' ;
+                ->editColumn('position', function ($data) {
+                    return $data->position->name;
                 })
                 ->addColumn('action', function ($data) {
                     return view('pages.karyawan.modal.b_edit', compact('data'));

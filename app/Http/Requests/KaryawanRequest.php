@@ -34,7 +34,7 @@ class KaryawanRequest extends FormRequest
             //
             'position_id'       => ['required'],
             'email'             => ['required', 'email', new HTMLTag , 'unique:account,email'],
-            'phone'             => ['required', 'unique:account,phone', 'max20'],
+            'phone'             => ['required', 'unique:account,phone', 'max:20'],
             'fullname'          => ['required', 'max:100', new HTMLTag],
             'place_of_birth'    => ['required', 'string', new HTMLTag, 'max:50'],
             'date_of_birth'     => ['required', 'date'],

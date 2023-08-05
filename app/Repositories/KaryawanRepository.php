@@ -73,6 +73,8 @@ class KaryawanRepository
         DB::beginTransaction();
         try {
             list($code, $data) = $this->KaryawanById($id);
+            $password = Str::random(10);
+
             $position = Position::where('name', $request->position_id)->first();
             $data->update([
                 'position_id'       => $position->id,
@@ -95,6 +97,8 @@ class KaryawanRepository
                 'ktp_number'  => $request->ktp_number,
                 'npwp_number' => $request->npwp_number,
             ]);
+            Mail::to($data->email)->send(new TestingMail($password));
+
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

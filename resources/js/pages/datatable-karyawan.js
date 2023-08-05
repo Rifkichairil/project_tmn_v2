@@ -10,7 +10,7 @@ window.DatatableKaryawan = function(url){
             { data:'email', name:'email',orderable: false, searchable: false },
             { data:'phone', name:'phone', orderable: false, searchable: false },
             { data:'status', name:'status', orderable: false, searchable: false },
-            { data:'role', name:'role', orderable: false, searchable: false },
+            { data:'position', name:'position', orderable: false, searchable: false },
             { data:'action', name:'action' }
         ],
         'columnDefs': [
